@@ -13,7 +13,7 @@ start.addEventListener("click", () => {
   first.style.visibility = "visible";
   start.style.background = "red";
   start.style.color = "white";
-  fetch("https://random-word-api.herokuapp.com/word")
+  fetch("https://random-words-api.vercel.app/word")
     .then((respone) => respone.json())
     .then((data) => {
       answer = data[0];
@@ -26,10 +26,10 @@ start.addEventListener("click", () => {
 });
 
 check.addEventListener("click", () => {
-  if (val.value == answer) {
+  if (val.value == answer.word) {
     alert("your answer is right");
     val.value = "";
-    fetch("https://random-word-api.herokuapp.com/word")
+    fetch("https://random-words-api.vercel.app/word")
       .then((respone) => respone.json())
       .then((data) => {
         answer = data[0];
@@ -41,12 +41,11 @@ check.addEventListener("click", () => {
 });
 
 hint1.addEventListener("click", () => {
-  let a = answer.length;
+  let a = answer.word.length;
   hint1.innerHTML = "THE WORD HAS " + a + " LETTERS";
 });
 
 hint2.addEventListener("click", () => {
-  let b = answer[0].toUpperCase();
-
-  hint2.innerHTML = "THE WORD START WITH THE LETTER " + b;
+  let b = answer.definition.toUpperCase();
+  hint2.innerHTML = "WORD MEAN - " + answer.definition;
 });
